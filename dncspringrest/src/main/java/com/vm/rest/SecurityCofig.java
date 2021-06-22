@@ -39,7 +39,7 @@ public class SecurityCofig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers("/admin").hasRole("ADMIN")
-		.antMatchers("/user").hasRole("USER")
+		.antMatchers("/user").hasAnyRole("USER")//please allow access to /user url to both user and admin
 		.antMatchers("/").permitAll()
 		.and()
 		.formLogin();
