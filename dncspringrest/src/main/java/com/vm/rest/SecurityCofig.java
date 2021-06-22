@@ -23,7 +23,11 @@ public class SecurityCofig extends WebSecurityConfigurerAdapter {
 		auth.inMemoryAuthentication()
 		.withUser("saiteja")
 		.password("saipwd")
-		.roles("USER");
+		.roles("USER")
+		.and()
+		.withUser("chandra")
+		.password("akshay")
+		.roles("ADMIN");
 	}
 
 	@Bean
@@ -31,4 +35,13 @@ public class SecurityCofig extends WebSecurityConfigurerAdapter {
 		return NoOpPasswordEncoder.getInstance();
 	}
 
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+		.antMatchers("/**")//match for all the paths
+		.hasRole("ADMIN")
+		//.hasAnyRole("_","_")
+		.and()
+		.formLogin();
+	}
 }

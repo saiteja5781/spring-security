@@ -28,26 +28,6 @@ public class StudentController {
 		return  studentService.getStudent(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value ="students") //create a resource
-	public void addStudent(@RequestBody Student student) {
-		System.out.println("controllers add student");
-		studentService.addStudent(student);
-	}
-	
-	@RequestMapping(method = RequestMethod.PUT, value ="students/{id}")
-	public void updateStudent(@RequestBody Student student,@PathVariable int id)
-	{
-		System.out.println("controllers update students");
-		studentService.updateStudent(student, id);
-	}
-
-	@RequestMapping(method = RequestMethod.DELETE, value="students/{id}")
-	public void deleteStudent(@RequestBody Student student,@PathVariable int id)
-	{
-		System.out.println("deleted the student succesfully");
-		studentService.deleteStudent(student, id);
-	}
-	
 	@GetMapping("/")
 	public String home() {
 		return ("<h1>welcome home</h1>");
